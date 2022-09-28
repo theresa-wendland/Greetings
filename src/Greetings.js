@@ -1,6 +1,5 @@
 (function(global, $){
 
-
     // generate a greeting object so we don't have to say new on every use 
     var Greeting = function(firstName, lastName, language) {
         return new Greeting.init(firstName, lastName, language);
@@ -71,7 +70,27 @@
         setLang: function (lang) {
             this.language = lang; 
             this.validate()
-console.log('HERE')
+            return this;
+        }, 
+
+        // jQuery dependant method 
+        HTMLGreeting: function(selector, formal) {
+            if (!$) {
+                throw 'jQuery is need to use this method';
+            }
+
+            if (!selector) {
+                throw 'Missing Selector'
+            }
+
+            var msg; 
+            if (formal) {
+                msg = this.formalGreet();
+            } else {
+                msg = this.informalGreet();
+            }
+
+            $(selector).html(msg);
             return this;
         }
 
@@ -86,6 +105,8 @@ console.log('HERE')
         self.firstName = firstName || '';
         self.lastName = lastName || '';
         self.language = language || 'en';
+        
+        self.validate();
 
     }
 
