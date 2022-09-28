@@ -1,3 +1,6 @@
-var greeting = Greet$('Stacy', 'Doe')
+var example = Greet$('Stacy', 'Brown')
 
-console.log(greeting)
+
+// exmaple chaining methods 
+example.greet().setLang('es').greet(true);
+
